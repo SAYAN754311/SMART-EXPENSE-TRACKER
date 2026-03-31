@@ -3,7 +3,7 @@ import os
 FILE_NAME = "expenses.txt"
 
 
-# ➕ Add Expense
+#  Add Expense
 def add_expense():
     try:
         amount = float(input("Enter amount: ₹"))
@@ -13,19 +13,19 @@ def add_expense():
         with open(FILE_NAME, "a") as file:
             file.write(f"{amount},{category},{note}\n")
 
-        print("✅ Expense added successfully!\n")
+        print(" Expense added successfully!\n")
 
     except ValueError:
-        print("❌ Invalid amount. Please enter a number.\n")
+        print(" Invalid amount. Please enter a number.\n")
 
 
-# 📄 View Expenses
+#  View Expenses
 def view_expenses():
     if not os.path.exists(FILE_NAME):
-        print("⚠️ No expenses found.\n")
+        print(" No expenses found.\n")
         return
 
-    print("\n📄 All Expenses:")
+    print("\n All Expenses:")
     print("-" * 40)
 
     with open(FILE_NAME, "r") as file:
@@ -36,12 +36,12 @@ def view_expenses():
     print()
 
 
-# 💰 Total Expense
+#  Total Expense
 def total_expense():
     total = 0
 
     if not os.path.exists(FILE_NAME):
-        print("⚠️ No expenses found.\n")
+        print(" No expenses found.\n")
         return
 
     with open(FILE_NAME, "r") as file:
@@ -49,15 +49,15 @@ def total_expense():
             amount, _, _ = line.strip().split(",")
             total += float(amount)
 
-    print(f"💰 Total Expense: ₹{total}\n")
+    print(f" Total Expense: ₹{total}\n")
 
 
-# 📊 Category Summary
+#  Category Summary
 def category_summary():
     summary = {}
 
     if not os.path.exists(FILE_NAME):
-        print("⚠️ No expenses found.\n")
+        print(" No expenses found.\n")
         return
 
     with open(FILE_NAME, "r") as file:
@@ -67,7 +67,7 @@ def category_summary():
 
             summary[category] = summary.get(category, 0) + amount
 
-    print("\n📊 Category-wise Summary:")
+    print("\n Category-wise Summary:")
     print("-" * 40)
 
     for category, amount in summary.items():
@@ -76,16 +76,16 @@ def category_summary():
     print()
 
 
-# 🧾 Search Expenses (Bonus Feature)
+#  Search Expenses (Bonus Feature)
 def search_expense():
     keyword = input("Enter keyword to search: ").lower()
     found = False
 
     if not os.path.exists(FILE_NAME):
-        print("⚠️ No expenses found.\n")
+        print(" No expenses found.\n")
         return
 
-    print("\n🔍 Search Results:")
+    print("\n Search Results:")
     print("-" * 40)
 
     with open(FILE_NAME, "r") as file:
@@ -101,10 +101,10 @@ def search_expense():
     print()
 
 
-# 📋 Menu
+#  Menu
 def menu():
     while True:
-        print("==== 💸 Smart Expense Tracker ====")
+        print("====  Smart Expense Tracker ====")
         print("1. Add Expense")
         print("2. View Expenses")
         print("3. Total Expense")
@@ -125,12 +125,12 @@ def menu():
         elif choice == "5":
             search_expense()
         elif choice == "6":
-            print("👋 Exiting... Goodbye!")
+            print(" Exiting... Goodbye!")
             break
         else:
-            print("❌ Invalid choice. Try again.\n")
+            print(" Invalid choice. Try again.\n")
 
 
-# ▶️ Run Program
+#  Run Program
 if __name__ == "__main__":
     menu()
