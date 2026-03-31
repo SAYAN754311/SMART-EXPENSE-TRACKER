@@ -65,7 +65,7 @@ expense-tracker/
 Download and install Python from the official website.
 
 
-### Step 3: Run the Program
+### Step 2: Run the Program
 
 ```
 python main.py
