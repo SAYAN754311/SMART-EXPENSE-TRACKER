@@ -1,0 +1,136 @@
+import os
+
+FILE_NAME = "expenses.txt"
+
+
+# ➕ Add Expense
+def add_expense():
+    try:
+        amount = float(input("Enter amount: ₹"))
+        category = input("Enter category (food, travel, etc): ").strip()
+        note = input("Enter note: ").strip()
+
+        with open(FILE_NAME, "a") as file:
+            file.write(f"{amount},{category},{note}\n")
+
+        print("✅ Expense added successfully!\n")
+
+    except ValueError:
+        print("❌ Invalid amount. Please enter a number.\n")
+
+
+# 📄 View Expenses
+def view_expenses():
+    if not os.path.exists(FILE_NAME):
+        print("⚠️ No expenses found.\n")
+        return
+
+    print("\n📄 All Expenses:")
+    print("-" * 40)
+
+    with open(FILE_NAME, "r") as file:
+        for line in file:
+            amount, category, note = line.strip().split(",")
+            print(f"₹{amount} | {category} | {note}")
+
+    print()
+
+
+# 💰 Total Expense
+def total_expense():
+    total = 0
+
+    if not os.path.exists(FILE_NAME):
+        print("⚠️ No expenses found.\n")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        for line in file:
+            amount, _, _ = line.strip().split(",")
+            total += float(amount)
+
+    print(f"💰 Total Expense: ₹{total}\n")
+
+
+# 📊 Category Summary
+def category_summary():
+    summary = {}
+
+    if not os.path.exists(FILE_NAME):
+        print("⚠️ No expenses found.\n")
+        return
+
+    with open(FILE_NAME, "r") as file:
+        for line in file:
+            amount, category, _ = line.strip().split(",")
+            amount = float(amount)
+
+            summary[category] = summary.get(category, 0) + amount
+
+    print("\n📊 Category-wise Summary:")
+    print("-" * 40)
+
+    for category, amount in summary.items():
+        print(f"{category}: ₹{amount}")
+
+    print()
+
+
+# 🧾 Search Expenses (Bonus Feature)
+def search_expense():
+    keyword = input("Enter keyword to search: ").lower()
+    found = False
+
+    if not os.path.exists(FILE_NAME):
+        print("⚠️ No expenses found.\n")
+        return
+
+    print("\n🔍 Search Results:")
+    print("-" * 40)
+
+    with open(FILE_NAME, "r") as file:
+        for line in file:
+            if keyword in line.lower():
+                amount, category, note = line.strip().split(",")
+                print(f"₹{amount} | {category} | {note}")
+                found = True
+
+    if not found:
+        print("No matching expenses found.")
+
+    print()
+
+
+# 📋 Menu
+def menu():
+    while True:
+        print("==== 💸 Smart Expense Tracker ====")
+        print("1. Add Expense")
+        print("2. View Expenses")
+        print("3. Total Expense")
+        print("4. Category Summary")
+        print("5. Search Expense")
+        print("6. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            add_expense()
+        elif choice == "2":
+            view_expenses()
+        elif choice == "3":
+            total_expense()
+        elif choice == "4":
+            category_summary()
+        elif choice == "5":
+            search_expense()
+        elif choice == "6":
+            print("👋 Exiting... Goodbye!")
+            break
+        else:
+            print("❌ Invalid choice. Try again.\n")
+
+
+# ▶️ Run Program
+if __name__ == "__main__":
+    menu()
