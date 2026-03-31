@@ -1,47 +1,93 @@
-# 💸 Smart Expense Tracker
+import os
 
-## 📌 Problem
+FILE_NAME = "expenses.txt"
 
-Students often fail to track daily expenses, leading to overspending and poor budgeting.
+def add_expense():
+    amount = input("Enter amount: ")
+    category = input("Enter category (food, travel, etc): ")
+    note = input("Enter note: ")
 
-## 💡 Solution
+    with open(FILE_NAME, "a") as f:
+        f.write(f"{amount},{category},{note}\n")
 
-This project is a simple Python-based expense tracker that helps users record, view, and analyze their expenses.
+    print("✅ Expense added successfully!\n")
 
-## 🚀 Features
 
-* Add new expenses
-* View all expenses
-* Calculate total spending
-* Category-wise expense summary
-* Data stored in a file
+def view_expenses():
+    if not os.path.exists(FILE_NAME):
+        print("No expenses found.\n")
+        return
 
-## 🛠️ Technologies Used
+    with open(FILE_NAME, "r") as f:
+        for line in f:
+            amount, category, note = line.strip().split(",")
+            print(f"₹{amount} | {category} | {note}")
+    print()
 
-* Python (File Handling, Loops, Functions)
 
-## ▶️ How to Run
+def total_expense():
+    total = 0
 
-1. Install Python
-2. Download or clone this project
-3. Run:
+    if not os.path.exists(FILE_NAME):
+        print("No expenses found.\n")
+        return
 
-   ```
-   python main.py
-   ```
+    with open(FILE_NAME, "r") as f:
+        for line in f:
+            amount, _, _ = line.strip().split(",")
+            total += float(amount)
 
-## 📊 Example
+    print(f"💰 Total Expense: ₹{total}\n")
 
-```
-₹200 | food | lunch
-₹100 | travel | auto
-```
 
-## 📁 File Structure
+def category_summary():
+    summary = {}
 
-* main.py → main program
-* expenses.txt → stores data
+    if not os.path.exists(FILE_NAME):
+        print("No expenses found.\n")
+        return
 
-## ✅ Conclusion
+    with open(FILE_NAME, "r") as f:
+        for line in f:
+            amount, category, _ = line.strip().split(",")
+            amount = float(amount)
 
-This project helps users manage money effectively and demonstrates basic Python concepts in a real-world scenario.
+            if category in summary:
+                summary[category] += amount
+            else:
+                summary[category] = amount
+
+    print("📊 Category-wise Summary:")
+    for cat, amt in summary.items():
+        print(f"{cat}: ₹{amt}")
+    print()
+
+
+def menu():
+    while True:
+        print("==== Expense Tracker ====")
+        print("1. Add Expense")
+        print("2. View Expenses")
+        print("3. Total Expense")
+        print("4. Category Summary")
+        print("5. Exit")
+
+        choice = input("Enter choice: ")
+
+        if choice == "1":
+            add_expense()
+        elif choice == "2":
+            view_expenses()
+        elif choice == "3":
+            total_expense()
+        elif choice == "4":
+            category_summary()
+        elif choice == "5":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice\n")
+
+
+if __name__ == "__main__":
+    menu()
