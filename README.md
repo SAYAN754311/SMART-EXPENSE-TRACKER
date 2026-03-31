@@ -1,12 +1,12 @@
-# 💸 Smart Expense Tracker
+#  Smart Expense Tracker
 
-## 📖 Overview
+##  Overview
 
 The **Smart Expense Tracker** is a simple Python-based application designed to help users record, manage, and analyze their daily expenses. It is especially useful for students who want to monitor their spending habits and improve financial discipline.
 
 ---
 
-## ❗ Problem Statement
+##  Problem Statement
 
 Many students struggle with managing their daily expenses due to:
 
@@ -16,7 +16,7 @@ Many students struggle with managing their daily expenses due to:
 
 ---
 
-## 💡 Proposed Solution
+##  Proposed Solution
 
 This project provides a **command-line based expense tracker** that allows users to:
 
@@ -26,17 +26,17 @@ This project provides a **command-line based expense tracker** that allows users
 
 ---
 
-## 🚀 Features
+##  Features
 
-* ➕ Add new expenses (amount, category, note)
-* 📄 View all recorded expenses
-* 💰 Calculate total spending
-* 📊 Category-wise expense summary
-* 💾 Persistent storage using file handling
+*  Add new expenses (amount, category, note)
+*  View all recorded expenses
+*  Calculate total spending
+*  Category-wise expense summary
+*  Persistent storage using file handling
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 * **Python**
 
@@ -47,7 +47,7 @@ This project provides a **command-line based expense tracker** that allows users
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 expense-tracker/
@@ -58,7 +58,7 @@ expense-tracker/
 
 ---
 
-## ▶️ Installation & Setup
+##  Installation & Setup
 
 ### Step 1: Install Python
 
@@ -73,7 +73,7 @@ python main.py
 
 ---
 
-## 🧑‍💻 Usage Instructions
+##  Usage Instructions
 
 1. Run the program
 2. Choose an option from the menu:
@@ -87,7 +87,7 @@ python main.py
 
 ---
 
-## 📊 Example Output
+##  Example Output
 
 ```
 ==== Expense Tracker ====
@@ -104,8 +104,7 @@ Enter choice: 2
 ```
 
 ---
-
-## 🎯 Learning Outcomes
+##  Learning Outcomes
 
 * Real-world problem solving
 * Python programming fundamentals
@@ -114,7 +113,7 @@ Enter choice: 2
 
 ---
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 * Add graphical user interface (GUI)
 * Monthly/weekly expense reports
